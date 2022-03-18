@@ -1,8 +1,8 @@
 package Collection;
 import Data.*;
 import Collection.EmptyIO;
-import WrongFormat.WrongFormat;
-import java.io.*;
+import exceptions.WrongFormat;
+
 import java.time.LocalDate;
 import java.util.*;
 
@@ -15,7 +15,7 @@ public class OrganizationAsker {
 //    private Object FileManager_1;
 
 
-    public Organization createOrganization() {
+    public OrganizationType createOrganization() {
 
         private long id; //Значение поля должно быть больше 0, Значение этого поля должно быть уникальным, Значение этого поля должно генерироваться автоматически
 
@@ -101,24 +101,24 @@ public class OrganizationAsker {
                 System.out.println("Элемент не обнаружен");
             }
         }
-
-        String partNumber = null;
-        while (partNumber == null) {
+/*
+        String fullName = null;
+        while (fullName == null) {
             try{
-                System.out.println("Write the PartNumber: ");
+                System.out.println("Укажите полное имя : ");
                 String nm = scanner.nextLine().trim();
                 if (nm == null) throw new EmptyIO();
                 if (nm.equals("")) throw new EmptyIO();
                 if (nm.contains(";")) throw  new WrongFormat();
-                partNumber = nm;
+                fullName = nm;
             }
             catch (EmptyIO e)
             {
-                System.out.println("Please write sth cant be Empty");
+                System.out.println("Организация не может не иметь полного имени! Укажите его Ж");
             }catch (NoSuchElementException exception) {
-                System.out.println("Couldnt understand! ");
+                System.out.println("всё ещё не понятно! ");
             } catch (WrongFormat wrongFormat) {
-                System.out.println("Dont use \";\"");
+                System.out.println("Не используйте \";\"");
             }
         }
         UnitOfMeasure unitOfMeasure;
@@ -141,7 +141,7 @@ public class OrganizationAsker {
             }
         }
 
-
+*/
         String mname = null;
         while (mname == null) {
             try{
@@ -161,10 +161,10 @@ public class OrganizationAsker {
                 System.out.println("Dont use \";\"");
             }
         }
-        String fulname = null;
-        while (fulname == null) {
+        String fullName = null;
+        while (fullName == null) {
             try{
-                System.out.println("Write Fullname of Manufacturar ");
+                System.out.println("Укажите полное имя ");
                 String nm = scanner.nextLine().trim();
                 if (nm == null) throw new EmptyIO();
                 if (nm.equals("")) throw new EmptyIO();
@@ -173,18 +173,18 @@ public class OrganizationAsker {
             }
             catch (EmptyIO e)
             {
-                System.out.println("Please write sth cant be Empty");
+                System.out.println("Пожалуйста, запишите полное имя!");
             }catch (NoSuchElementException exception) {
-                System.out.println("Couldnt understand! ");
+                System.out.println("Не понятно! ");
             } catch (WrongFormat wrongFormat) {
-                System.out.println("Dont use \";\"");
+                System.out.println("Не используйте \";\"");
             }
         }
 
         OrganizationType organizationType;
         while (true) {
             try{
-                System.out.println("Write Type of Organization: ");
+                System.out.println("Укажите тип ООрганизации: ");
                 System.out.println(java.util.Arrays.asList(OrganizationType.values()));
                 String st = scanner.nextLine().trim();
                 if (st == null) throw new EmptyIO();
@@ -193,18 +193,17 @@ public class OrganizationAsker {
                 break;
             }
             catch (EmptyIO e) {
-                System.out.println("Cant be Empty");
+                System.out.println("Не может быть пустым");
             }catch (NoSuchElementException exception) {
-                System.out.println("NO Such Element!");
+                System.out.println("Нет такого элемента!");
             }catch (IllegalArgumentException exception) {
-                System.out.println("NOt in the List!");
+                System.out.println("Нет в списке!");
             }
         }
         String street = null;
         while (street == null) {
             try{
-                System.out.println("Wrtie Address");
-                System.out.println("Write the street Name: ");
+                System.out.println("Укажите улицу");
                 String nm = scanner.nextLine().trim();
                 if (nm == null) throw new EmptyIO();
                 if (nm.equals("")) throw new EmptyIO();
@@ -213,17 +212,17 @@ public class OrganizationAsker {
             }
             catch (EmptyIO e)
             {
-                System.out.println("Please write sth cant be Empty");
+                System.out.println("Организация не может не иметь улицу");
             }catch (NoSuchElementException exception) {
-                System.out.println("Couldnt understand! ");
+                System.out.println("Не понятно! ");
             } catch (WrongFormat wrongFormat) {
-                System.out.println("Dont use \";\"");
+                System.out.println("Не используйте \";\"");
             }
         }
-        String zipcode = null;
-        while (zipcode == null) {
+        String zipCode = null;
+        while (zipCode == null) {
             try{
-                System.out.println("Write ZIPCODE: ");
+                System.out.println("Запишите ZIPCODE: ");
                 String nm = scanner.nextLine().trim();
                 if (nm == null) throw new EmptyIO();
                 if (nm.equals("")) throw new EmptyIO();
@@ -232,18 +231,17 @@ public class OrganizationAsker {
             }
             catch (EmptyIO e)
             {
-                System.out.println("Please write sth cant be Empty");
+                System.out.println("Организация не может не иметь zipCode");
             }catch (NoSuchElementException exception) {
-                System.out.println("Couldnt understand! ");
+                System.out.println("Не понятно! ");
             } catch (WrongFormat wrongFormat) {
-                System.out.println("Dont use \";\"");
+                System.out.println("Не используйте \";\"");
             }
         }
-        Double tx;
+        double tx;
         while (true) {
             try{
-                System.out.println("Enter information about Town");
-                System.out.println("Enter x(double) of your Town: ");
+                System.out.println("укажите координату Х для своей организации : ");
                 String st = scanner.nextLine().trim();
                 if (st == null) throw new EmptyIO();
                 if (st.equals("")) throw new EmptyIO();
@@ -253,23 +251,24 @@ public class OrganizationAsker {
             }
             catch (EmptyIO e)
             {
-                System.out.println("Cant be Empty");
+                System.out.println("Не может не иметь координаты Х");
             }catch (WrongFormat e){
-                System.out.println("Incorrect Format, Number should be bigger then 0 and smaller then 191928932");
+                System.out.println("Неверный формат, Значение должно быть больше 0 и меньше  191928932");
             }catch (NumberFormatException exception) {
-                System.out.println("Please write in right Format");
+                System.out.println("Порробуйте ещё раз в правильном формате");
             }catch (NoSuchElementException exception) {
-                System.out.println("No Such Element");
+                System.out.println("Такого элемента нет");
             }
         }
-        Integer ty;
+        //проверить и переделать всё ниже
+        Long ty;
         while (true) {
             try{
                 System.out.println("Enter y of your Town: ");
                 String st = scanner.nextLine().trim();
                 if (st == null) throw new EmptyIO();
                 if (st.equals("")) throw new EmptyIO();
-                ty = Integer.parseInt(st);
+                ty = Long.parseLong(st);
                 if (ty < 0 || ty > 191928932) throw new WrongFormat();
                 break;
             }
@@ -326,7 +325,7 @@ public class OrganizationAsker {
             }
         }
 
-        return new Organization(
+        return new OrganizationType(
                 id.nextLong(1_000_000),
                 name,
                 new Coordinates(x, y),

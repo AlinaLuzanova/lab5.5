@@ -1,23 +1,27 @@
 import Collection.*;
+import Commands.*;
+import Data.Organization;
+
 
 import java.io.*;
+import java.util.TreeSet;
 
 public class Main {
     public static void main(String[] args) throws IOException {
         FileM fileM = new FileM();
 
-        TreeSet<Product> products = fileM.readCSV();
+        TreeSet<Organization> organization = fileM.readCSV();
 
-        CollectionManager collectionManager = new CollectionManager(products);
+        CollectionManager collectionManager = new CollectionManager(organization);
         System.out.println("Добро пожаловать!");
         System.out.println("Напечатайте  help, чтобы начать");
-        InputChecker inputChecke = new InputChecker();
+        InputChecker inputChecker = new InputChecker();
         OrganizationAsker commandAsker = new OrganizationAsker();
         CommandManager commandManager = new CommandManager(
                 new Help(),
                 new info(),
                 new show(),
-                new add (),
+                new add(),
                 new update_id(),
                 new remove_by_id(),
                 new clear(),
