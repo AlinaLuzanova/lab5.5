@@ -1,3 +1,4 @@
+/*
 package Collection;
 import Data.*;
 import Collection.EmptyIO;
@@ -142,6 +143,7 @@ public class OrganizationAsker {
         }
 
 */
+/*
         String mname = null;
         while (mname == null) {
             try{
@@ -340,3 +342,4 @@ public class OrganizationAsker {
         );
     }
 }
+*/

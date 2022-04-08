@@ -4,19 +4,20 @@ import Data.Organization;
 
 
 import java.io.*;
-import java.util.TreeSet;
+import java.util.Stack;
+
 
 public class Main {
     public static void main(String[] args) throws IOException {
         FileM fileM = new FileM();
 
-        TreeSet<Organization> organization = fileM.readCSV();
+        Stack<Organization> organization = fileM.read();
 
         CollectionManager collectionManager = new CollectionManager(organization);
         System.out.println("Добро пожаловать!");
         System.out.println("Напечатайте  help, чтобы начать");
         InputChecker inputChecker = new InputChecker();
-        OrganizationAsker commandAsker = new OrganizationAsker();
+        OrganizationAsker organizationAsker = new OrganizationAsker();
         CommandManager commandManager = new CommandManager(
                 new Help(),
                 new info(),

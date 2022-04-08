@@ -2,12 +2,12 @@ package Commands;
 
 
 
-abstract class AbstractCommand{
+abstract class AbstractCommand implements Commands{
     public boolean execute_script(String argument){
         return false;
     }
 
-    public boolean execute_script (){
+    public boolean execute(){
         return false;
     }
 

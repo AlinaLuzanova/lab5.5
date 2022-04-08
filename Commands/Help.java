@@ -1,5 +1,5 @@
 package Commands;
-
+//Создаём класс хелп который при вызове выводит функции всех остальных комманд в консоль
 public class Help  extends AbstractCommand{
     public boolean execute() {
         System.out.println ("Help -  вывести справку по доступным командам");

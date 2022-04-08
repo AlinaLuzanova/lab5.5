@@ -6,12 +6,14 @@ import Collection.OrganizationAsker;
 public class add extends AbstractCommand{
     private CollectionManager cm;
     private OrganizationAsker ca;
+    //в конструкторе создали два объекта - cm и ca
     public add(CollectionManager cm, OrganizationAsker ca){
         this.cm=cm;
         this.ca=ca;
     }
-    public boolean execute_script(){
-        cm.add(ca.createProduct());
+    //сейчас коллекшн менеджер добавляет орг аскера чтобы он создал орагнизацию
+    public boolean execute(){
+        cm.add(ca.createOrganization());
         return true;
     }
 }

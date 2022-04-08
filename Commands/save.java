@@ -9,7 +9,7 @@ public class save extends AbstractCommand {
         this.cm = cm;
     }
 
-    public boolean execute_script() {
+    public boolean execute() {
         cm.save();
         return true;
     }

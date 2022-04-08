@@ -1,5 +1,12 @@
 package Collection;
 import Commands.Commands;
+/*
+Здесь прописаны классы команд, выполнение которых программа поддерживает
+в интерактивном режиме
+
+Используем для этого конструктор для класса Commandmanager, куда
+поместим классы, в которых необходимые методы реализуются
+ */
 public class CommandManager {
     private static Commands info;
     private static Commands show;
@@ -13,6 +20,7 @@ public class CommandManager {
     private static Commands remove_first;
     private static Commands shuffle;
     private static Commands history;
+    private static Commands sum_of_annual_turnover;
     private static Commands count_less_than_postal_address;
     private static Commands filter_by_employees_count;
 
@@ -30,6 +38,7 @@ public class CommandManager {
                           Commands remove_first,
                           Commands shuffle,
                           Commands history,
+                          Commands sum_of_annual_turnover,
                           Commands count_less_than_postal_address,
                           Commands filter_by_employees_count)
     {
@@ -45,46 +54,51 @@ public class CommandManager {
         this.remove_first = remove_first;
         this.shuffle = shuffle;
         this.history = history;
+        this.sum_of_annual_turnover = sum_of_annual_turnover;
         this.count_less_than_postal_address = count_less_than_postal_address;
         this.filter_by_employees_count = filter_by_employees_count;
 
     }
 
+    /*
+    Создаём методы, возвращающие выполнение интерактивных методов
+     */
+
     public static boolean info() {
-        return info.execute_script();
+        return info.execute();
     }
 
     public static boolean show() {
-        return show.execute_script();
+        return show.execute();
     }
 
     public static boolean add() {
-        return add.execute_script();
+        return add.execute();
     }
 
     public static boolean update_id(String s) {
-        return update_id.execute_script(s);
+        return update_id.execute(s);
     }
 
     public static boolean remove_by_id(String s) {
-        return remove_by_id.execute_script(s);
+        return remove_by_id.execute(s);
     }
 
     public static boolean clear() {
-        return clear.execute_script();
+        return clear.execute();
     }
 
     public static boolean save() {
-        return save.execute_script();
+        return save.execute();
     }
 
 
     public static boolean execute_script() {
-        return save.execute_script();
+        return save.execute();
     }
 
     public static boolean exit() {
-        return exit.execute_script();
+        return exit.execute();
     }
 
 
@@ -93,26 +107,17 @@ public class CommandManager {
     }
 
     public static boolean shuffle() {
-        return shuffle.execute_script();
+        return shuffle.execute();
     }
 
     public static boolean history() {
-        return history.execute_script();
+        return history.execute();
     }
 
 
     public static boolean sum_of_annual_turnover() {
-        return sum_of_annual_turnover.execute_script();
+        return sum_of_annual_turnover.execute();
     }
 
-
-    public static boolean sum_of_annual_turnover() {
-        return sum_of_annual_turnover.execute_script();
-    }
-
-
-    public static boolean sum_of_annual_turnover() {
-        return sum_of_annual_turnover.execute_script();
-    }
 
 }

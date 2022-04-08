@@ -9,7 +9,7 @@ public class clear extends AbstractCommand{
         this.collectionManager = C;
     }
     @Override
-    public boolean execute_script() {
+    public boolean execute() {
         collectionManager.clear();
         return true;
     }
