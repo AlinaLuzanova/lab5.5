@@ -1,7 +1,7 @@
 package Commands;
 //Создаём класс хелп который при вызове выводит функции всех остальных комманд в консоль
-public class Help  extends AbstractCommand{
-    public boolean execute() {
+public class Help  implements Commands{
+    public void execute() {
         System.out.println ("Help -  вывести справку по доступным командам");
         System.out.println ("Info - вывести в стандартный поток вывода информацию о коллекции" );
         System.out.println ("Show - вывести в стандартный поток вывода все элементы коллекции в строковом представлении");
@@ -19,7 +19,7 @@ public class Help  extends AbstractCommand{
         System.out.println ("Count_less_than_postal_address - вывести количество элементов, значение поля postalAddress которых меньше заданного");
         System.out.println ("filter_by_employees_count - вывести элементы, значение поля employeesCount которых равно заданному");
 
-        return true;
+
 
     }
 }

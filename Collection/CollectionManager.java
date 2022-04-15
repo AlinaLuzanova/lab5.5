@@ -9,6 +9,7 @@ import java.util.TreeSet;
 /*
 в этом классе прописаны методы классов интерактивных методов  и методы
 необходимые для их работы
+Одина объект CM содержит одну коллекцию
  */
 
 public class CollectionManager {
@@ -19,7 +20,7 @@ public class CollectionManager {
     в формате по умолчанию yyyy-MM-dd.
      Мы можем использовать метод now(), чтобы получить текущую дату.
      */
-    private Stack<OrganizationType> organizations;
+    private Stack<Organization> organizations;
 
     public CollectionManager(Stack<Organization> organization) {
         this.organizations = organizations;
@@ -39,16 +40,16 @@ public class CollectionManager {
 
 
     public boolean remove_by_id(Long id){
-        boolean flag = false;
+
         for(Iterator <Organization> iterator = organizations.iterator();
             iterator.hasNext();){
             Organization organization = iterator.next();
             if(organization.getId() == id){
-                flag = true;
+
                 iterator.remove();
             }
         }
-        return !flag; //что это значит
+        return true;
     }
 
         public void clear() {
@@ -67,11 +68,6 @@ public class CollectionManager {
 
     public LocalDateTime getCreationDate() {
         return this.creationDate;
-
-
-
-
-
 
 
     }

@@ -7,7 +7,7 @@ import Commands.Commands;
 Используем для этого конструктор для класса Commandmanager, куда
 поместим классы, в которых необходимые методы реализуются
  */
-public class CommandManager {
+public class CommandManager implements Commands{
     private static Commands info;
     private static Commands show;
     private static Commands add;
@@ -64,10 +64,11 @@ public class CommandManager {
     Создаём методы, возвращающие выполнение интерактивных методов
      */
 
-    public static boolean info() {
-        return info.execute();
+    public void info() {
+
     }
 
+    // Поменять
     public static boolean show() {
         return show.execute();
     }
@@ -84,7 +85,7 @@ public class CommandManager {
         return remove_by_id.execute(s);
     }
 
-    public static boolean clear() {
+    public void clear() {
         return clear.execute();
     }
 

@@ -6,15 +6,17 @@ import Collection.CollectionManager;
 2) дату создания колекшн менеджер получает с помощью спец метода
 3) аналогично с размером
  */
-public class info extends AbstractCommand{
+public class info implements Commands{
     private final CollectionManager collectionManager;
     public info(CollectionManager c){
         this.collectionManager=c;
     }
-    public boolean execute_script() {
+
+
+    public void execute() {
         System.out.println("Тип коллекции: Stack");
         System.out.println("Дата создания: "+ collectionManager.getCreationDate());
         System.out.println("Колличество элементов: "+ collectionManager.size());
-        return true;
+
     }
 }

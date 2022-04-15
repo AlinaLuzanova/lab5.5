@@ -4,6 +4,7 @@ import Data.Organization;
 
 
 import java.io.*;
+import java.util.Scanner;
 import java.util.Stack;
 
 
@@ -25,9 +26,9 @@ public class Main {
                 new add(),
                 new update_id(),
                 new remove_by_id(),
-                new clear(),
-                new execute_script (),
-                new exit(),
+                new Clear(collectionManager),
+                new execute_script(),
+                new Exit(),
                 new remove_first(),
                 new shuffle(),
                 new history (),
