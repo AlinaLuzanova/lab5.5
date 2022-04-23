@@ -2,21 +2,21 @@ package Commands;
 
 import Collection.*;
 
-public class Clear implements Command {
+public class Info implements Command {
 
     private final CollectionManager collectionManager;
 
-    public Clear(CollectionManager collectionManager) {
+    public Info(CollectionManager collectionManager) {
         this.collectionManager = collectionManager;
     }
 
     @Override
     public void execute(String args[], boolean fromFile) {
-        collectionManager.clear();
+        collectionManager.info();
     }
 
     @Override
     public String toString() {
-        return "Commands.Clear - отчистить коллекцию";
+        return "info - выводит информацию о коллекции (тип, дата инициализации и тд)";
     }
 }

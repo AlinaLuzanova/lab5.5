@@ -1,77 +1,109 @@
 package Collection;
 
-import Data.Organization;
-import Data.OrganizationType;
-import java.time.LocalDateTime;
-import java.util.Iterator;
+import Data.Organization
+import Parser.ParserToXml;   //json
+
+import java.time.LocalDate;
+import java.util.Collections;
 import java.util.Stack;
-import java.util.TreeSet;
-/*
-в этом классе прописаны методы классов интерактивных методов  и методы
-необходимые для их работы
-Одина объект CM содержит одну коллекцию
- */
 
 public class CollectionManager {
+    LinkedList<Organization> collection = new LinkedList<>();
+    private Long id = 1L;
+    LocalDate initTime = LocalDate.now();
 
-    private final LocalDateTime creationDate = LocalDateTime.now();
-    /*
-    неизменяемый класс, который представляет объекты Date
-    в формате по умолчанию yyyy-MM-dd.
-     Мы можем использовать метод now(), чтобы получить текущую дату.
-     */
-    private Stack<Organization> organizations;
-
-    public CollectionManager(Stack<Organization> organization) {
-        this.organizations = organizations;
-
+    public Long getId() {
+        return id++;
     }
 
-        public void show(){
-            Iterator <Organization> iterator = organizations.iterator();
-            while (iterator.hasNext()) {
-                System.out.print(iterator.next().toString());
+    public void mergeCollections(LinkedList<Organization> collectionFromFile) {
+        collection.addAll(collectionFromFile);
+    }
+
+    public void save() {
+        Parser parserToXml = new ParserToXml();
+        parserToXml.parseToXml(collection);
+    }
+
+    public void info() {
+        System.out.println("Тип - " + collection.getClass() + "\n"
+                + "Количество элементов - " + collection.size() + "\n"
+                + "Дата инициализации - " + initTime);
+    }
+
+    public void removeGreater(Organization CompareElement) {
+        for (Organization element: collection) {
+            if (element.compareTo(CompareElement) == 1) {
+                collection.remove(element);
             }
         }
+    }
 
-        public void add(Organization o) {
-            organizations.add(o);
-        }
+    public void shuffle(Organization Element) {
+        Collections.sort(collection);
+        if (collection.peekFirst().compareTo(Element) >= 0) collection.addFirst(Element);
+    }
 
-
-    public boolean remove_by_id(Long id){
-
-        for(Iterator <Organization> iterator = organizations.iterator();
-            iterator.hasNext();){
-            Organization organization = iterator.next();
-            if(organization.getId() == id){
-
-                iterator.remove();
+    public void filterStartsWithSoundtrackName(String SubString) {
+        for (Organization element: collection) {
+            String NameSoundtrack = element.getFullName();
+            if (NameSoundtrack.startsWith(SubString)) {
+                System.out.println(element);
             }
         }
-        return true;
     }
 
-        public void clear() {
-            organizations.clear();
+    public void count_less_than_postal_address(String weaponType) {
+        int amount = 0;
+        for(Organization element: collection) {
+            if (element.getOrganizationType().length() < weaponType.length()) {
+                amount++;
+            }
         }
-
-//execute_script
-
-        public void exit() {
-            System.exit(2);
-        }
-
-        public void remove_first() {
-
-        }
-
-    public LocalDateTime getCreationDate() {
-        return this.creationDate;
-
-
+        System.out.println(amount);
     }
 
-    public CollectionManager(TreeSet<Organization> organization) {
+    public void Shuffle() {
+        Collections.sort(collection);
+        for (Organization element: collection) {
+            System.out.println(element + "\n");
+        }
     }
+
+    public void removeFirst() {
+        collection.removeFirst();
+    }
+
+    public void show() {
+        System.out.println(collection);
+    }
+
+    public void clear() {
+        collection.clear();
+    }
+
+    public void add(Organization element) {
+        collection.add(element);
+    }
+
+    public boolean updateById(Long updateId) {
+        for(Organization element: collection) {
+            if (element.getId() == updateId) {
+                collection.remove(element);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean removeById(Long deleteId) {
+        for(Organization element: collection) {
+            if (element.getId() == deleteId) {
+                collection.remove(element);
+                return true;
+            }
+        }
+        return false;
+    }
+
 }

@@ -1,6 +1,6 @@
 package exceptions;
 
-public class MyownException extends Exception{
+public class  MyownException extends Exception{
     MyownException(String a){
         super(a);
     }

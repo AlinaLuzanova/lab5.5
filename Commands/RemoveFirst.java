@@ -2,21 +2,20 @@ package Commands;
 
 import Collection.*;
 
-public class Clear implements Command {
-
+public class RemoveFirst implements Command {
     private final CollectionManager collectionManager;
 
-    public Clear(CollectionManager collectionManager) {
+    public RemoveFirst(CollectionManager collectionManager) {
         this.collectionManager = collectionManager;
     }
 
     @Override
     public void execute(String args[], boolean fromFile) {
-        collectionManager.clear();
+        collectionManager.removeFirst();
     }
 
     @Override
     public String toString() {
-        return "Commands.Clear - отчистить коллекцию";
+        return "remove_first - удаляет первый элемент в коллекции";
     }
 }

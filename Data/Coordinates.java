@@ -1,29 +1,36 @@
 package Data;
 
 public class Coordinates {
-    private Float  x;
-    private float y;
-    public Coordinates(Float x, float y){
-        this.x=x;
-        this.y=y;
 
+    private Float x; // поле не может быть null, max value = 754
+    private Float y;
+    private static Float max_x = Float.valueOf(754);
+
+    public Coordinates(Float x, Float y) {
+        this.x = x;
+        this.y = y;
     }
 
-    @Override
-    public String toString() {
-        String info = "Координаты организации: \n";
+    public static boolean checkValidX(Float x) {
+        if (x > max_x) return false;
+        return true;
+    }
 
-        info += ("Coordinates: \n");
-        info += ("             x: " + x + '\n');
-        info += ("             y: " + y + '\n');
-        return info;
-
+    public static Float getMaxX(int i) {
+        return max_x;
     }
 
     public Float getX() {
         return x;
     }
-    public float getY(){
+
+    public Float getY() {
         return y;
     }
+
+    @Override
+    public String toString() {
+        return "x = " + x + ", y = " + y;
+    }
+
 }

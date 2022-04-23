@@ -2,7 +2,7 @@ package Data;
 
 import java.time.LocalDate;
 
-public class Organization implements Comparable{
+public class Organization implements Comparable {
 
     private long id; //Значение поля должно быть больше 0, Значение этого поля должно быть уникальным, Значение этого поля должно генерироваться автоматически
     private String name; //Поле не может быть null, Строка не может быть пустой
@@ -14,57 +14,31 @@ public class Organization implements Comparable{
     private OrganizationType type; //Поле не может быть null
     private Address postalAddress; //Поле может быть null
 
-    public OrganizationType(
-            long id,
-            String name,
-            java.time.LocalDate creationDate,
-            Coordinates coordinates,
-            float annualTurnover,
-            String fullName,
-            long employeesCount,
-            OrganizationType type,
-            Address postalAddress
-    )
-    {
+    public OrganizationType(long id, String name, java.time.LocalDate creationDate, Coordinates coordinates, float annualTurnover, long employeesCount,
+                            String fullName, OrganizationType type, Address postalAddress) {
         this.id = id;
         this.name = name;
-        this.creationDate = creationDate;
         this.coordinates = coordinates;
+        this.creationDate = creationDate;
         this.annualTurnover = annualTurnover;
         this.fullName = fullName;
         this.employeesCount = employeesCount;
         this.postalAddress = postalAddress;
-    }
-    public long getId() {
-        return id;
+        this.type = type;
+
+        creationDate = LocalDate.now();
     }
 
-    public String getName() {
-        return name;
+    public Float getCoordinateX() {
+        return coordinates.getX();
     }
 
-    public Coordinates getCoordinates() {
-        return coordinates;
+    public float getCoordinateY() {
+        return coordinates.getY();
     }
 
     public LocalDate getCreationDate() {
         return creationDate;
-    }
-
-    public float getAnnualTurnover(){
-        return annualTurnover;
-    }
-
-    public String getFullName(){
-        return fullName;
-    }
-
-    public  long getEmployeesCount(){
-        return employeesCount;
-    }
-
-    public OrganizationType getType() {
-        return type;
     }
 
     public Address getPostalAddress() {
@@ -72,18 +46,46 @@ public class Organization implements Comparable{
     }
 
 
+    public Long getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public float getAnnualTurnover() {
+        return annualTurnover;
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setCreationDate(LocalDate creationDate) {
+        this.creationDate = creationDate;
+    }
+
+    public String getOrganizationType() {
+        return type.toString();
+    }
+    public long getEmployeesCount() {
+        return employeesCount;
+    }
+
+    public void setEmployeesCount(long employeesCount) {
+        this.employeesCount = employeesCount;
+    }
+
     @Override
     public String toString() {
-        String information = "Получить ифнормацию об Организации\n";
-        information += ("Name: " + name + '\n');
-        information += ("ID: " + id + '\n');
-        information += (coordinates.toString());
-        information += ("creationDate: " + creationDate + '\n');
-        information += ("annual Turnover: " + annualTurnover + '\n');
-        information += ("full Name: " + fullName + '\n');
-        information += ("employees Count: " + employeesCount + '\n');
-        information += ("postal Address: " + postalAddress + '\n');
-        return information;
-
-
+        return "id = " + id + "\n"
+                + "name = " + name + "\n"
+                + "coordinates: " + coordinates + "\n"
+                + "annualTurnover = " + annualTurnover + "\n"
+                + "fullName = " + fullName + "\n"
+                + "type = " + type + "\n"
+                + "postalAddress = " + postalAddress + "\n"
+                + "creationDate = " + creationDate;
+    }
 }
