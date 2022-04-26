@@ -10,7 +10,7 @@ public class UpdateId implements Command {
         this.collectionManager = collectionManager;
     }
 
-    public void execute(String args[], boolean fromFile) {
+    public void execute(String[] args, boolean fromFile) {
         try {
             final Long id = Long.parseLong(args[0]);
             if (!this.collectionManager.updateById(id)) {

@@ -20,4 +20,4 @@ import InputInfo.ElementInput;
             return "Commands.Add - добавляет новый элемент в коллекцию";
         }
     }
-}
+

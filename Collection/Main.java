@@ -1,4 +1,4 @@
-package Collection;
+/*package Collection;
 
 import Data.Organization;
 import Parser.ParserFromXml;
@@ -36,3 +36,4 @@ public class Main {
         }
     }
 }
+*/

@@ -14,8 +14,8 @@ public class Organization implements Comparable {
     private OrganizationType type; //Поле не может быть null
     private Address postalAddress; //Поле может быть null
 
-    public OrganizationType(long id, String name, java.time.LocalDate creationDate, Coordinates coordinates, float annualTurnover, long employeesCount,
-                            String fullName, OrganizationType type, Address postalAddress) {
+    public Organization(long id, String name, Coordinates coordinates, float annualTurnover,
+                        String fullName, OrganizationType type, Address postalAddress) {
         this.id = id;
         this.name = name;
         this.coordinates = coordinates;
@@ -87,5 +87,10 @@ public class Organization implements Comparable {
                 + "type = " + type + "\n"
                 + "postalAddress = " + postalAddress + "\n"
                 + "creationDate = " + creationDate;
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        return 0;
     }
 }

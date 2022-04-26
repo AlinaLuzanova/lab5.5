@@ -7,6 +7,7 @@ public class Address {
         this.name = postalAdress;
     }
 
+
     @Override
     public String toString() {
         return name;

@@ -1,10 +1,11 @@
 package Collection;
+
 import Commands.*;
 
-import java.util.Arrays;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.HashMap;
-
-import static java.lang.System.exit;
 
 public class CommandsList {
     public final HashMap<String, Command> commands = new HashMap<>();
@@ -19,31 +20,42 @@ public class CommandsList {
         commands.put("remove_first", new RemoveFirst(collectionManager));
         commands.put("history", new History(collectionManager));
         commands.put("filter_by_employees_count", new FilterByEmployeesCount(collectionManager));
-        commands.put("count_less_than_weapon_type", new CountLessThanPostalAddress(collectionManager));
+        commands.put("count_less_than_postal_address", new CountLessThanPostalAddress(collectionManager));
         commands.put("sum_of_annual_turnover", new SumofAnnualTurnover(collectionManager));
-        commands.put("execute_script", new ExecuteScript(this));
+        commands.put("execute_script", new ExecuteScript(collectionManager));
         commands.put("save", new Save(collectionManager));
         commands.put("help", new Help(commands));
         commands.put("exit", new Exit());
-        commands.put("shuffle",new Shuffle());
+        commands.put("shuffle", new Shuffle(collectionManager));
     }
 
-    public void execute(String command, boolean fromFile) {
+    public class execute implements Command {
+        private CollectionManager cm;
 
-        String commandCut[] = command.trim().split("\s+");
-        String commandName = commandCut[0];
-        String args[] = Arrays.copyOfRange(commandCut, 1, commandCut.length);
+        public execute(CollectionManager cm) {
+            this.cm = cm;
+        }
 
-        if (commands.containsKey(commandName)) {
-            commands.get(commandName).execute(args, fromFile);
-        } else {
-            if (fromFile) {
-                System.out.println("Некорректный файл, проверьте его. Остановка выполнения программы.");
-                exit(1);
+        public boolean execute(String arg) {
+            try (BufferedReader bufferedReader = new BufferedReader(new FileReader(arg))) {
+                String line;
+                while ((line = bufferedReader.readLine()) != null) {
+                    if (!line.split(" ")[0].equals("srcexecute_script")) {
+                        System.out.println(line);
+                        //  cm.execute(line, this);
+                    } else {
+                        System.out.println("Invalid command");
+                    }
+                }
+            } catch (IOException e) {
+                System.out.println("File not found, please, input existent file");
             }
-            System.out.println("Введите команду заново!");
+            return true;
+        }
+
+        @Override
+        public void execute(String[] args, boolean fromFile) {
+
         }
     }
 }
-}
-

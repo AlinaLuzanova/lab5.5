@@ -5,13 +5,13 @@ import Collection.*;
 public class Shuffle implements Command {
     private final CollectionManager collectionManager;
 
-    public Shuffle (CollectionManager collectionManager) {
+    public Shuffle(CollectionManager collectionManager) {
         this.collectionManager = collectionManager;
     }
 
     @Override
     public void execute(String args[], boolean fromFile) {
-        collectionManager.shuffle();//json
+        collectionManager.Shuffle(collectionManager);//json
     }
 
     @Override

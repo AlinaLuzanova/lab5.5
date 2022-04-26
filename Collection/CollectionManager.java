@@ -1,14 +1,14 @@
 package Collection;
 
-import Data.Organization
-import Parser.ParserToXml;   //json
+import Data.Organization;
+import InputInfo.ElementInput;
 
 import java.time.LocalDate;
 import java.util.Collections;
 import java.util.Stack;
 
 public class CollectionManager {
-    LinkedList<Organization> collection = new LinkedList<>();
+    Stack<Organization> collection = new Stack<>();
     private Long id = 1L;
     LocalDate initTime = LocalDate.now();
 
@@ -16,14 +16,14 @@ public class CollectionManager {
         return id++;
     }
 
-    public void mergeCollections(LinkedList<Organization> collectionFromFile) {
+    public void mergeCollections(Stack<Organization> collectionFromFile) {
         collection.addAll(collectionFromFile);
     }
 
-    public void save() {
+    /*public void save() {
         Parser parserToXml = new ParserToXml();
         parserToXml.parseToXml(collection);
-    }
+    }*/
 
     public void info() {
         System.out.println("Тип - " + collection.getClass() + "\n"
@@ -31,47 +31,25 @@ public class CollectionManager {
                 + "Дата инициализации - " + initTime);
     }
 
-    public void removeGreater(Organization CompareElement) {
-        for (Organization element: collection) {
-            if (element.compareTo(CompareElement) == 1) {
-                collection.remove(element);
-            }
-        }
-    }
-
-    public void shuffle(Organization Element) {
+    public void Shuffle(CollectionManager collectionManager) { // проблема с джсоном
         Collections.sort(collection);
-        if (collection.peekFirst().compareTo(Element) >= 0) collection.addFirst(Element);
+        if (collection.peek().compareTo(Item) >= 0) collection.pop(ElementInput);
     }
 
-    public void filterStartsWithSoundtrackName(String SubString) {
-        for (Organization element: collection) {
-            String NameSoundtrack = element.getFullName();
-            if (NameSoundtrack.startsWith(SubString)) {
-                System.out.println(element);
-            }
-        }
-    }
 
-    public void count_less_than_postal_address(String weaponType) {
+    public String CountLessThanPostalAddress(String type) {
         int amount = 0;
         for(Organization element: collection) {
-            if (element.getOrganizationType().length() < weaponType.length()) {
+            if (element.getOrganizationType().length() < type.length()) {
                 amount++;
             }
         }
         System.out.println(amount);
-    }
-
-    public void Shuffle() {
-        Collections.sort(collection);
-        for (Organization element: collection) {
-            System.out.println(element + "\n");
-        }
+        return type;
     }
 
     public void removeFirst() {
-        collection.removeFirst();
+        collection.pop();
     }
 
     public void show() {

@@ -10,7 +10,7 @@ public class RemoveFirst implements Command {
     }
 
     @Override
-    public void execute(String args[], boolean fromFile) {
+    public void execute(String[] args, boolean fromFile) {
         collectionManager.removeFirst();
     }
 

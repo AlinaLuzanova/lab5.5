@@ -1,58 +1,36 @@
 package Commands;
 
-import Collection.CommandsList;
-import InputInfo.FileInputInformation;
+import Collection.CollectionManager;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
-import java.nio.file.Path;
-import java.util.HashSet;
-import java.util.Scanner;
 
 public class ExecuteScript implements Command{
-    private final CommandsList commandsList;
-    private final FileInputInformation fileInputInformation = new FileInputInformation();
-    private HashSet<Path> filesName = new HashSet<>();
+    private CollectionManager cm;
 
-    public ExecuteScript(CommandsList commandsList) {
-        this.commandsList = commandsList;
+    public ExecuteScript (CollectionManager cm){
+        this.cm=cm;
     }
-
-
-    @Override
-    public void execute(String args[], boolean fromFile) {
-        Path path = null;
-        try {
-            if(!fromFile) {
-                path = fileInputInformation.input();
-            }
-            else {
-                if (args.length > 0) path = Path.of(args[0].trim());
-                else {
-                    System.out.println("Некорректный путь");
-                    return;
+    public boolean ExecuteScript(String arg){
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(arg))) {
+            String line;
+            while ((line = bufferedReader.readLine()) != null) {
+                if (!line.split(" ")[0].equals("srcexecute_script")) {
+                    System.out.println(line);
+                    //  cm.execute(line, this);
+                } else {
+                    System.out.println("Invalid command");
                 }
             }
-
-            if (filesName.contains(path)) {
-                System.out.println("Вы пытаетесь вызвать файл, который уже был вызван");
-                return;
-            }
-
-            filesName.add(path);
-            Scanner inputFromFile = new Scanner(path);
-            while (inputFromFile.hasNext()){
-                String command = inputFromFile.nextLine();
-                commandsList.execute(command, true);
-            }
-            filesName.clear();
+        } catch (IOException e) {
+            System.out.println("File not found, please, input existent file");
         }
-        catch (IOException e) {
-            System.out.println("Похоже кто - то безвольный раб и прав даже на файл не имеет");
-        }
+        return true;
     }
 
     @Override
-    public String toString() {
-        return "execute_script - выполняет ваш скрипт";
+    public void execute(String[] args, boolean fromFile) {
+
     }
 }

@@ -66,7 +66,7 @@ public class ElementInput {
     public void employeesCountInput() {
         while (true) {
             Scanner input = new Scanner(System.in);
-            System.out.print("Есть зубочистка: ");
+            System.out.print(" ");
             if (input.hasNextBoolean()) {
                 employeesCount = input.nextLong();
                 break;
@@ -94,7 +94,7 @@ public class ElementInput {
             String inputOrganizationType = input.nextLine().trim();
 
             if (check.checkOrganizationType(inputOrganizationType)== 1) {
-                type = Type.valueOf(inputOrganizationType);
+                type = type.valueOf(inputOrganizationType);
                 break;
             }
             System.out.println("Введите слово из предложенного списка.");
@@ -116,8 +116,8 @@ public class ElementInput {
 
 
     public Organization createElement(Long id) {
-        return new Organization(id, name, new Coordinates(x, y),annualTurnover,
-                fullName,  OrganizationType, new Address(postalAdress));
+        return new Organization( id, name, new Coordinates(x, y),annualTurnover,
+                fullName,  type, new Address(postalAddress));
     }
 
     public Organization resultElement(Long id) {
