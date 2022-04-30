@@ -2,7 +2,12 @@ package Collection;
 
 import Data.Organization;
 import InputInfo.ElementInput;
+import com.google.gson.Gson;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.time.LocalDate;
 import java.util.Collections;
 import java.util.Stack;
@@ -33,7 +38,8 @@ public class CollectionManager {
 
     public void Shuffle(CollectionManager collectionManager) { // проблема с джсоном
         Collections.sort(collection);
-        if (collection.peek().compareTo(Item) >= 0) collection.pop(ElementInput);
+        //TODO: исправить
+//        if (collection.peek().compareTo(Item) >= 0) collection.pop(ElementInput);
     }
 
 
@@ -72,6 +78,21 @@ public class CollectionManager {
             }
         }
         return false;
+    }
+
+    public void save() {
+        Gson g = new Gson();
+        String nameOrg = g.toJson(collection);
+        System.out.println(nameOrg);
+        try (FileOutputStream os = new FileOutputStream("/Users/elizavetagolubeva/IdeaProjects/lab5.5/Collection/Filetest.rtf")) {
+            OutputStreamWriter output = new OutputStreamWriter(os);
+            output.write(nameOrg);
+            output.flush();
+        } catch (FileNotFoundException exp) {
+            System.out.println(exp);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public boolean removeById(Long deleteId) {
