@@ -15,7 +15,13 @@ import java.util.Stack;
 public class CollectionManager {
     Stack<Organization> collection = new Stack<>();
     private Long id = 1L;
+    private final String filepath;
+
     LocalDate initTime = LocalDate.now();
+
+    public CollectionManager(String filepath){
+        this.filepath = filepath;
+    }
 
     public Long getId() {
         return id++;
@@ -79,7 +85,7 @@ public class CollectionManager {
         Gson g = new Gson();
         String nameOrg = g.toJson(collection);
         System.out.println(nameOrg);
-        try (FileOutputStream os = new FileOutputStream("/Users/elizavetagolubeva/IdeaProjects/lab5.5/Collection/Filetest.rtf")) {
+        try (FileOutputStream os = new FileOutputStream(filepath)) {
             OutputStreamWriter output = new OutputStreamWriter(os);
             output.write(nameOrg);
             output.flush();

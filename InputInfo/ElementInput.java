@@ -54,24 +54,24 @@ public class ElementInput {
     public void annualTurnoverInput() {
         while (true) {
             Scanner input = new Scanner(System.in);
-            System.out.print("Является героем: ");
-            if (input.hasNextBoolean()) {
+            System.out.print("Годовой оборот: ");
+            if (input.hasNextFloat()) {
                 annualTurnover = input.nextFloat();
                 if(check.checkAnnualTurnover(annualTurnover) == 1) break;
             }
-            System.out.println("Введите либо true либо false!");
+            System.out.println("Значение должно быть больше 0");
         }
     }
 
     public void employeesCountInput() {
         while (true) {
             Scanner input = new Scanner(System.in);
-            System.out.print(" ");
-            if (input.hasNextBoolean()) {
+            System.out.print("Количество сотрудников: ");
+            if (input.hasNextLong()) {
                 employeesCount = input.nextLong();
                 break;
             }
-            System.out.println("Введите либо true либо false!");
+            System.out.println("Значение должно быть больше 0");
         }
     }
 

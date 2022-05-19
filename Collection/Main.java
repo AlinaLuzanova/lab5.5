@@ -1,12 +1,8 @@
 package Collection;
 
-import Data.Address;
-import Data.Coordinates;
 import Data.Organization;
-import Data.OrganizationType;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
 
 import java.io.*;
 import java.lang.reflect.Type;
@@ -20,12 +16,13 @@ public class Main {
 
 
     public static void main(String args[]) {
-        CollectionManager collectionManager = new CollectionManager();
-        CommandsList commandsList = new CommandsList(collectionManager);
+
         Gson gson = new Gson();
         Stack<Organization> items = new Stack<>();
 
         if (args.length > 0) {
+            CollectionManager collectionManager = new CollectionManager(args[0]);
+            CommandsList commandsList = new CommandsList(collectionManager);
 
             try (FileReader fr = new FileReader(args[0])) {
                 // Create a BufferedReader with buffer array size of 16384 (32786 bytes = 32 KB).

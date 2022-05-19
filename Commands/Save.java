@@ -11,8 +11,6 @@ public class Save implements Command {
     }
 
     @Override
-
-
     public void execute(String[] args, boolean fromFile) {
         collectionManager.save();
     }
