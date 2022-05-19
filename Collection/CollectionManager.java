@@ -25,11 +25,6 @@ public class CollectionManager {
         collection.addAll(collectionFromFile);
     }
 
-    /*public void save() {
-        Parser parserToXml = new ParserToXml();
-        parserToXml.parseToXml(collection);
-    }*/
-
     public void info() {
         System.out.println("Тип - " + collection.getClass() + "\n"
                 + "Количество элементов - " + collection.size() + "\n"
@@ -45,7 +40,7 @@ public class CollectionManager {
 
     public String CountLessThanPostalAddress(String type) {
         int amount = 0;
-        for(Organization element: collection) {
+        for (Organization element : collection) {
             if (element.getOrganizationType().length() < type.length()) {
                 amount++;
             }
@@ -71,7 +66,7 @@ public class CollectionManager {
     }
 
     public boolean updateById(Long updateId) {
-        for(Organization element: collection) {
+        for (Organization element : collection) {
             if (element.getId() == updateId) {
                 collection.remove(element);
                 return true;
@@ -96,7 +91,7 @@ public class CollectionManager {
     }
 
     public boolean removeById(Long deleteId) {
-        for(Organization element: collection) {
+        for (Organization element : collection) {
             if (element.getId() == deleteId) {
                 collection.remove(element);
                 return true;

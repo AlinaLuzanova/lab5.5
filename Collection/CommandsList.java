@@ -5,7 +5,10 @@ import Commands.*;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.HashMap;
+
+import static java.lang.System.exit;
 
 public class CommandsList {
     public final HashMap<String, Command> commands = new HashMap<>();
@@ -29,33 +32,26 @@ public class CommandsList {
         commands.put("shuffle", new Shuffle(collectionManager));
     }
 
-    public class execute implements Command {
-        private CollectionManager cm;
+    /**
+     * Parsing commands and arguments
+     *
+     * @param command input command
+     * @param fromFile from where command was inputted
+     */
+    public void execute(String command, boolean fromFile) {
 
-        public execute(CollectionManager cm) {
-            this.cm = cm;
-        }
+        String commandCut[] = command.trim().split("\\s+");
+        String commandName = commandCut[0];
+        String args[] = Arrays.copyOfRange(commandCut, 1, commandCut.length);
 
-        public boolean execute(String arg) {
-            try (BufferedReader bufferedReader = new BufferedReader(new FileReader(arg))) {
-                String line;
-                while ((line = bufferedReader.readLine()) != null) {
-                    if (!line.split(" ")[0].equals("srcexecute_script")) {
-                        System.out.println(line);
-                        //  cm.execute(line, this);
-                    } else {
-                        System.out.println("Invalid command");
-                    }
-                }
-            } catch (IOException e) {
-                System.out.println("File not found, please, input existent file");
+        if (commands.containsKey(commandName)) {
+            commands.get(commandName).execute(args, fromFile);
+        } else {
+            if (fromFile) {
+                System.out.println("Некорректная команда " + commandName + ". Завершение программы.");
+                exit(1);
             }
-            return true;
-        }
-
-        @Override
-        public void execute(String[] args, boolean fromFile) {
-
+            System.out.println("Команда не найдена. Повторите ввод.");
         }
     }
 }
