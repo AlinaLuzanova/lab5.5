@@ -14,4 +14,8 @@ public class FilterByEmployeesCount implements Command {
     public void execute(String[] args, boolean fromFile) {
 
     }
+    @Override
+    public String toString(){
+        return "filter_by_employees_count  - вывести сумму значений поля annualTurnover для всех элементов коллекции";
+    }
 }

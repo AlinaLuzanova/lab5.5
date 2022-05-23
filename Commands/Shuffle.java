@@ -11,7 +11,7 @@ public class Shuffle implements Command {
 
     @Override
     public void execute(String args[], boolean fromFile) {
-        collectionManager.Shuffle(collectionManager);//json
+        collectionManager.Shuffle(collectionManager);
     }
 
     @Override

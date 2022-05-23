@@ -1,17 +1,25 @@
 package Commands;
 
-import Collection.CollectionManager;
+import Collection.CommandsList;
 
 public class History implements Command {
 
-    private final CollectionManager collectionManager;
+    public static final int count = 11; // количество выводимых команд
 
-    public History(CollectionManager collectionManager) {
-        this.collectionManager = collectionManager;
+    public void execute() {
+            CommandsList.getHistory();
+        CommandsList.addHistory("history");
+    }
+    public void getHelp() {
+        System.out.println("history : вывести последние" + count +" команд (без их аргументов)");
     }
 
     @Override
     public void execute(String[] args, boolean fromFile) {
 
+    }
+    @Override
+    public String toString(){
+        return "history  - вывести последние 12 команд (без их аргументов)";
     }
 }

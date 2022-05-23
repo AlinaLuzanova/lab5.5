@@ -79,7 +79,7 @@ public class ElementInput {
     public void fullNameInput() {
         while (true) {
             Scanner input = new Scanner(System.in);
-            System.out.print("Введите имя саундтрека: ");
+            System.out.print("Введите полное имя организации: ");
             fullName = input.nextLine().trim();
             if (check.checkFullName(fullName) == 1) break;
             System.out.println("Неправильный ввод. Строка должна быть не пустой!");
@@ -89,7 +89,7 @@ public class ElementInput {
     public void organizationTypeInput() {
         while (true) {
             Scanner input = new Scanner(System.in);
-            System.out.print("Введите тип оружия. Возможные варианты - ");
+            System.out.print("Введите тип организации. Возможные варианты - ");
            OrganizationType.outputOrganizationType();
             String inputOrganizationType = input.nextLine().trim();
 
@@ -104,9 +104,9 @@ public class ElementInput {
     public void postalAddressInput() {
         while(true) {
             Scanner input = new Scanner(System.in);
-            System.out.print("Введите марку машины: ");
-            if (input.hasNextLine()) {
-                postalAddress = input.nextLine().trim();
+            System.out.print("Введите почтовый индекс: ");
+            if (input.hasNextInt()) {
+                postalAddress = String.valueOf(input.nextInt());
                 if (check.checkAddress(postalAddress) == 1) break;
             }
 

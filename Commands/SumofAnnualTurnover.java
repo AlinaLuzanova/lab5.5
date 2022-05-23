@@ -14,4 +14,9 @@ public class SumofAnnualTurnover implements Command {
     public void execute(String[] args, boolean fromFile) {
 
     }
+    @Override
+    public String toString(){
+        return "sum_of_annual_turnover  - вывести сумму значений поля annualTurnover для всех элементов коллекции";
+    }
+
 }

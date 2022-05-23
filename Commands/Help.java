@@ -1,5 +1,7 @@
 package Commands;
 
+import Collection.CommandsList;
+
 import java.util.HashMap;
 
 public class Help implements Command {
@@ -13,6 +15,7 @@ public class Help implements Command {
     public void execute(String args[], boolean fromFile) {
         for (Command description: commands.values()) {
             System.out.println(description.toString());
+            CommandsList.addHistory("help");
         }
     }
 

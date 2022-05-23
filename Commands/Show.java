@@ -17,6 +17,6 @@ public class Show implements Command {
 
     @Override
     public String toString() {
-        return "Commands.Show - выводит все элементы коллекции в строковом представлении";
+        return "show - выводит все элементы коллекции в строковом представлении";
     }
 }

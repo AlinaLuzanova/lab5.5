@@ -27,6 +27,6 @@ public class UpdateId implements Command {
 
     @Override
     public String toString() {
-        return "update - обновить значение элемента коллекции, id которого совпадает с исходным";
+        return "update_id  - обновить значение элемента коллекции, id которого совпадает с исходным";
     }
 }

@@ -49,4 +49,8 @@ public class CountLessThanPostalAddress implements Command{
 //        cm.count_greater_than_part_number(a);
 //        return true;
 //    }
+@Override
+public String toString(){
+    return "count_less_than_postal_address  - вывести количество элементов, значение поля postalAddress которых меньше заданного";
+}
 }

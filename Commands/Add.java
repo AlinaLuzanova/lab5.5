@@ -1,5 +1,6 @@
 package Commands;
 import Collection.CollectionManager;
+import Collection.CommandsList;
 import InputInfo.ElementInput;
 
     public class Add implements Command {
@@ -13,6 +14,7 @@ import InputInfo.ElementInput;
         public void execute(String args[], boolean fromFile) {
             ElementInput elementInput = new ElementInput();
             collectionManager.add(elementInput.resultElement(collectionManager.getId()));
+            CommandsList.addHistory("add");
         }
 
         @Override

@@ -13,10 +13,14 @@ public class Clear implements Command {
     @Override
     public void execute(String args[], boolean fromFile) {
         collectionManager.clear();
+        CommandsList.addHistory("clear");
+        System.out.println("Команда успешно выполнена");
     }
-
+    public void getHelp() {
+        System.out.println("clear : очистить коллекцию");
+    }
     @Override
     public String toString() {
-        return "Commands.Clear - отчистить коллекцию";
+        return "clear - отчистить коллекцию";
     }
 }

@@ -1,7 +1,7 @@
 package Collection;
 
+import Commands.ExecuteScript;
 import Data.Organization;
-import InputInfo.ElementInput;
 import com.google.gson.Gson;
 
 import java.io.FileNotFoundException;
@@ -10,6 +10,8 @@ import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.time.LocalDate;
 import java.util.Collections;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Stack;
 
 public class CollectionManager {
@@ -38,15 +40,16 @@ public class CollectionManager {
     }
 
     public void Shuffle(CollectionManager collectionManager) { // проблема с джсоном
-        Collections.sort(collection);
+        Collections.shuffle(collection);
+        System.out.println("Команда выполнена");
         //TODO: исправить
-//        if (collection.peek().compareTo(Item) >= 0) collection.pop(ElementInput);
+//       if (collection.peek().compareTo(Item) >= 0) collection.pop(ElementInput);
     }
 
 
     public String CountLessThanPostalAddress(String type) {
         int amount = 0;
-        for (Organization element : collection) {
+        for(Organization element: collection) {
             if (element.getOrganizationType().length() < type.length()) {
                 amount++;
             }
@@ -54,6 +57,7 @@ public class CollectionManager {
         System.out.println(amount);
         return type;
     }
+
 
     public void removeFirst() {
         collection.pop();
@@ -105,5 +109,20 @@ public class CollectionManager {
         }
         return false;
     }
+    public Organization [] filter_by_employees_count(long employ){
+        List<Organization> list = new LinkedList<>();
+        for (Organization org:collection) {
+            if(org.getEmployeesCount() ==employ ){
+                list.add(org);
+            }
+        }
 
+        return filter_by_employees_count(employ) ;
+    }
+    public void history(){
+
+    }
+
+    public void execute(String line, ExecuteScript executeScript) {
+    }
 }
