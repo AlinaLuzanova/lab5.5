@@ -4,10 +4,10 @@ import Collection.CommandsList;
 
 public class History implements Command {
 
-    public static final int count = 11; // количество выводимых команд
+    public static final int count = 11;     // количество выводимых команд
 
     public void execute() {
-            CommandsList.getHistory();
+        CommandsList.getHistory();
         CommandsList.addHistory("history");
     }
     public void getHelp() {

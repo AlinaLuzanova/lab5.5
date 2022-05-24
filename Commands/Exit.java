@@ -15,4 +15,7 @@ public class Exit implements Command {
     public String toString() {
         return "exit - завершение программы";
     }
+    public void getHelp() {
+        System.out.println("exit : завершить программу (без сохранения в файл)");
+    }
 }
